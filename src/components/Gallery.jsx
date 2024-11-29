@@ -1,96 +1,120 @@
 import { useEffect, useRef, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Card from "../UI/Card/Card";
+import sunPic from "../assets/free-icon-sun-365237.png";
 
 export default function Gallery() {
   const cards = [
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
       temp: "temp",
     },
     {
       date: "date",
       time: "time",
-      img: "src/assets/free-icon-sun-365237.png",
+      img: sunPic,
+      temp: "temp",
+    },
+    {
+      date: "date",
+      time: "time",
+      img: sunPic,
+      temp: "temp",
+    },
+    {
+      date: "date",
+      time: "time",
+      img: sunPic,
+      temp: "temp",
+    },
+    {
+      date: "date",
+      time: "time",
+      img: sunPic,
+      temp: "temp",
+    },
+    {
+      date: "date",
+      time: "time",
+      img: sunPic,
       temp: "temp",
     },
   ];
 
-  let userScreenWidth;
   const scrollRef = useRef();
   const [isVisibleLeft, setIsVisibleLeft] = useState(false);
   const [isVisibleRight, setIsVisibleRight] = useState(true);
