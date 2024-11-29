@@ -1,0 +1,55 @@
+.bg {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(1, 1, 1, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    width: 300px;
+    min-height: 50px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.modal p {
+    color: black;
+    text-align: justify;
+}
+
+.cross {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.first,
+.second {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 15px;
+    height: 1px;
+    background: black;
+}
+
+.first {
+    transform: translate(50%, -50%) rotate(45deg);
+}
+
+.second {
+    transform: translate(50%, -50%) rotate(-45deg); 
+}

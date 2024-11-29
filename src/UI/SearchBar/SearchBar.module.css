@@ -1,0 +1,20 @@
+.searchBar {
+    background: #ffffff;
+    border-radius: 50px;
+    display: flex;
+    padding: 6px 12px;
+    gap: 6px;
+    width: 300px;
+    align-items: center;
+}
+
+.searchBar input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+}
+
+.icon {
+    cursor: pointer;
+}
