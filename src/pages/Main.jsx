@@ -7,11 +7,11 @@ import {
   updateUserData,
   setLoading,
 } from "../store/weatherStore";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Load from "../UI/Load/Load";
 import { positionAPICall } from "../utils/positionAPI";
 import { weatherAPICall } from "../utils/weatherAPI";
-import { ERROR_PAGE_400, ERROR_PAGE_404, ERROR_PAGE_500 } from "../utils/paths";
+import { ERROR_PAGE_404, ERROR_PAGE_500 } from "../utils/paths";
 import { useNavigate } from "react-router";
 
 export default function Main() {
@@ -20,6 +20,7 @@ export default function Main() {
   const navigator = useNavigate();
 
   useEffect(() => {
+    checkGeolocationPermission();
     getUserCity();
 
     const interval = setInterval(() => {
@@ -29,19 +30,44 @@ export default function Main() {
     return () => clearInterval(interval);
   }, []);
 
+  async function checkGeolocationPermission() {
+    try {
+      const permissionStatus = await window.navigator.permissions.query({
+        name: "geolocation",
+      });
+
+      permissionStatus.onchange = () => {
+        if (
+          permissionStatus.state === "granted" ||
+          permissionStatus.state === "denied"
+        ) {
+          location.reload();
+        }
+      };
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const getUserCity = async () => {
+    let weatherData;
+
     try {
       const apiData = await positionAPICall();
 
-      if (!apiData || !apiData[0]) {
-        throw { code: 404, message: "City data is not available." };
+      if (!apiData || (!apiData[0] && apiData !== "default")) {
+        throw { code: apiData.code, message: apiData.message };
       }
 
-      const city = apiData[0].name;
-      const weatherData = await weatherAPICall(city);
+      if (apiData === "default") {
+        weatherData = await weatherAPICall("london");
+      } else {
+        const city = apiData[0].name;
+        weatherData = await weatherAPICall(city);
+      }
 
       if (!weatherData) {
-        throw { code: 500, message: "Error fetching weather data." };
+        throw { code: weatherData.errorCode, message: weatherData.message };
       }
 
       dispatch(
@@ -68,13 +94,10 @@ export default function Main() {
       );
       dispatch(setLoading(false));
     } catch (error) {
-      console.error("Error fetching location or weather data:", error.message);
+      console.error(error.message);
       dispatch(setLoading(false));
 
       switch (error.code) {
-        case 400:
-          navigator(ERROR_PAGE_400);
-          break;
         case 404:
           navigator(ERROR_PAGE_404);
           break;

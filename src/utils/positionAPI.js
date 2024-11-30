@@ -17,18 +17,14 @@ export const positionAPICall = () => {
           const data = await response.json();
           resolve(data);
         },
-        (error) => {
-          reject({
-            code: 400,
-            message: `Error getting location: ${error.message}`,
-          });
+        () => {
+          const data = "default";
+          resolve(data);
         }
       );
     } else {
-      reject({
-        code: 400,
-        message: "Geolocation is not supported by this browser.",
-      });
+      const data = "default";
+      resolve(data);
     }
   });
 };

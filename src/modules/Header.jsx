@@ -1,11 +1,7 @@
 import Modal from "../UI/Modal/Modal";
 import SearchBar from "../UI/SearchBar/SearchBar";
 import { useDispatch } from "react-redux";
-import {
-  setLoading,
-  updateUserData,
-  updateWeather,
-} from "../store/weatherStore";
+import { updateUserData, updateWeather } from "../store/weatherStore";
 import { useState } from "react";
 import { weatherAPICall } from "../utils/weatherAPI";
 
@@ -15,18 +11,14 @@ export default function Header() {
   const [isCorrectInput, setIsCorrectInput] = useState(true);
 
   const forecastSearch = async (city) => {
-    if (!city) {
-      setIsCorrectInput(false);
-      return;
-    }
-
-    setIsCorrectInput(true);
-
     try {
       const weatherData = await weatherAPICall(city);
 
       if (weatherData.errorCode) {
-        throw new Error("Error fetching weather data");
+        throw {
+          code: weatherData.errorCode,
+          message: weatherData.errorMessage,
+        };
       }
 
       dispatch(
@@ -52,6 +44,7 @@ export default function Header() {
         })
       );
     } catch (error) {
+      console.error(`${error.code}: ${error.message}`);
       setIsCorrectInput(false);
     }
   };

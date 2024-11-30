@@ -37,24 +37,25 @@ export default function MainContent() {
   };
 
   function getIcon() {
-    if (weather.mainWeather === "Snow") {
-      return { img: snowIcon };
-    } else if (weather.mainWeather === "Thunderstorm ") {
-      return { img: stormIcon };
-    } else if (weather.mainWeather === "Drizzle") {
-      return { img: sunRainIcon };
-    } else if (weather.mainWeather === "Rain") {
-      return { img: rainIcon };
-    } else if (weather.mainWeather === "Clear") {
-      return { img: sunIcon };
-    } else if (weather.mainWeather === "Clouds") {
-      return { img: cloudIcon };
-    } else if (weather.mainWeather === "Atmosphere ") {
-      return { img: tornadoIcon };
-    } else if (weather.mainWeather === "Mist") {
-      return { img: fogIcon };
-    } else if (weather.mainWeather === "Haze") {
-      return { img: iceIcon };
+    switch (weather.mainWeather) {
+      case "Snow":
+        return { img: snowIcon };
+      case "Thunderstorm":
+        return { img: stormIcon };
+      case "Drizzle":
+        return { img: sunRainIcon };
+      case "Rain":
+        return { img: rainIcon };
+      case "Clouds":
+        return { img: cloudIcon };
+      case "Atmosphere":
+        return { img: tornadoIcon };
+      case "Mist":
+        return { img: fogIcon };
+      case "Haze":
+        return { img: iceIcon };
+      default:
+        return { img: sunIcon };
     }
   }
 

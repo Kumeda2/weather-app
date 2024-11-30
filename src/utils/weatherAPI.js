@@ -7,13 +7,13 @@ export const weatherAPICall = async (city) => {
     );
 
     if (!response.ok) {
-      throw {code: 404};
+      throw {code: 404, message: "Error fetching weather data."};
     }
 
     const data = await response.json();
 
     return data;
   } catch (error) {
-    return {errorCode: error.code}
+    return {errorCode: error.code, errorMessage: error.message}
   }
 };

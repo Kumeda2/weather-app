@@ -14,7 +14,15 @@ export const router = createBrowserRouter([
     element: <Main />,
     errorElement: (
       <ErrorPage>
-        <h1>Error 404. Invalid url</h1>
+        <h1>Unknown error</h1>
+      </ErrorPage>
+    ),
+  },
+  {
+    path: "*",
+    element: (
+      <ErrorPage>
+        <h1>Error 404. Invalid link</h1>
       </ErrorPage>
     ),
   },
